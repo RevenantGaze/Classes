@@ -1,0 +1,19 @@
+name: Classes
+main: io.github.com.revenantgaze.classes.Main
+version: 1.0.0.1
+author: RevenantGaze
+permissions:
+  classes.*:
+    description: Gives the player all Classes permissions!
+    children: 
+      classes.sign.create: true
+      classes.sign.use: true
+  classes.sign.create:
+    description: Makes the player able to create Classes signs!
+    default: op
+  classes.sign.use:
+    description: Makes the player able to use Classes signs!
+    default: op
+  classes.sign.denyuse:
+    description: Gives the player a warning message that he/she is not allowed to use Classes signs!
+    default: false

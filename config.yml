@@ -1,0 +1,7 @@
+classes:
+  - archer
+  - farmer
+  
+player:
+  RevenantGaze:
+    class: archer
