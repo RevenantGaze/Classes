@@ -56,20 +56,22 @@ public class PlayerSignClickEvent implements Listener {
 						}
 
 						else {
+							
+							String classNameCapitalized = WordUtils.capitalize(className);
 
 							plugin.getConfig().set("player." + eventPlayerName + ".class", className);
 							
-							eventPlayer.sendMessage(ChatColor.GOLD + "You just joined the class" + ChatColor.RED + WordUtils.capitalize(className) + "!");
+							eventPlayer.sendMessage(ChatColor.GOLD + "You just joined the class " + ChatColor.RED + classNameCapitalized + ChatColor.GOLD + "!");
 
 						}
 
 					}
 
-					if (eventPlayer.hasPermission("classes.sign.denyuse")) {
+					else if (eventPlayer.hasPermission("classes.sign.denyuse")) {
 
 						plugin.getLogger()
 								.info(eventPlayerName
-										+ "Tried to use a Classes sign without the needed permission!");
+										+ "tried to use a Classes sign without the needed permission!");
 
 					}
 					
