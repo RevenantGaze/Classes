@@ -3,6 +3,7 @@ package io.github.com.revenantgaze.classes.listeners;
 import io.github.com.revenantgaze.classes.ConfigManager;
 import io.github.com.revenantgaze.classes.Main;
 
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -56,8 +57,9 @@ public class PlayerSignClickEvent implements Listener {
 
 						else {
 
-							cm.setPlayerClass(eventPlayer, eventPlayerName,
-									className);
+							plugin.getConfig().set("player." + eventPlayerName + ".class", className);
+							
+							eventPlayer.sendMessage(ChatColor.GOLD + "You just joined the class" + ChatColor.RED + WordUtils.capitalize(className) + "!");
 
 						}
 
