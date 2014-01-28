@@ -25,7 +25,7 @@ public class CmdClass implements CommandExecutor {
 
 		if (sender instanceof Player) {
 
-			if (cmd.getName().equalsIgnoreCase("argue")) {
+			if (cmd.getName().equalsIgnoreCase("class")) {
 
 				Player senderPlayer = (Player) sender;
 
