@@ -59,7 +59,7 @@ public class PlayerSignClickEvent implements Listener {
 
 								plugin.getLogger()
 										.info(eventPlayerName
-												+ "tried to join his/hers current class!");
+												+ " tried to join his/hers current class!");
 
 							}
 
@@ -84,7 +84,7 @@ public class PlayerSignClickEvent implements Listener {
 
 								plugin.getLogger()
 										.info(eventPlayerName
-												+ "joined the class " + classNameCapitalized + "!");
+												+ " joined the class " + classNameCapitalized + "!");
 
 							}
 
