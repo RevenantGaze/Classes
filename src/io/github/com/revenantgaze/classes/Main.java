@@ -1,5 +1,6 @@
 package io.github.com.revenantgaze.classes;
 
+import io.github.com.revenantgaze.classes.commands.CmdClass;
 import io.github.com.revenantgaze.classes.listeners.PlayerSignClickEvent;
 import io.github.com.revenantgaze.classes.listeners.PlayerSignWriteEvent;
 
@@ -17,6 +18,8 @@ public class Main extends JavaPlugin {
 				new PlayerSignWriteEvent(this), this);
 		getServer().getPluginManager().registerEvents(
 				new PlayerSignClickEvent(this), this);
+		
+		getCommand("class").setExecutor(new CmdClass(this));
 
 		getConfig().options().copyDefaults(true);
 
