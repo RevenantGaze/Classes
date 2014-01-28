@@ -1,12 +1,13 @@
 name: Classes
 main: io.github.com.revenantgaze.classes.Main
-version: 1.0.3.4
+version: 1.0.4.5
 author: RevenantGaze
 commands:
-  class
+  class:
     description: Check which class you are a part of!
     usage: /class
     default: true
+    permission: classes.command.class
 permissions:
   classes.*:
     description: Gives the player all Classes permissions!
