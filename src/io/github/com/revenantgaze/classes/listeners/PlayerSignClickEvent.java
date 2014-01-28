@@ -34,6 +34,8 @@ public class PlayerSignClickEvent implements Listener {
 		String playerClass = plugin.getConfig().getString(
 				"player." + eventPlayerName + ".class");
 
+		boolean logToConsole = plugin.getConfig().getBoolean("log-to-console");
+
 		if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
 			if (event.getClickedBlock().getState() instanceof Sign) {
@@ -48,37 +50,62 @@ public class PlayerSignClickEvent implements Listener {
 
 					if (eventPlayer.hasPermission("classes.sign.use")) {
 
-						if (className == playerClass.toLowerCase()) {
+						if (className.equalsIgnoreCase(playerClass)) {
 
 							eventPlayer.sendMessage(ChatColor.RED
 									+ "You are already a part of this class!");
+							
+							if (logToConsole == true) {
+
+								plugin.getLogger()
+										.info(eventPlayerName
+												+ "tried to join his/hers current class!");
+
+							}
 
 						}
 
 						else {
-							
-							String classNameCapitalized = WordUtils.capitalize(className);
 
-							plugin.getConfig().set("player." + eventPlayerName + ".class", className);
+							String classNameCapitalized = WordUtils
+									.capitalize(className);
+
+							plugin.getConfig().set(
+									"player." + eventPlayerName + ".class",
+									className);
+							plugin.saveConfig();
+
+							eventPlayer.sendMessage(ChatColor.GOLD
+									+ "You just joined the class "
+									+ ChatColor.RED + classNameCapitalized
+									+ ChatColor.GOLD + "!");
 							
-							eventPlayer.sendMessage(ChatColor.GOLD + "You just joined the class " + ChatColor.RED + classNameCapitalized + ChatColor.GOLD + "!");
+							if (logToConsole == true) {
+
+								plugin.getLogger()
+										.info(eventPlayerName
+												+ "joined the class " + classNameCapitalized + "!");
+
+							}
 
 						}
 
 					}
 
-					else if (eventPlayer.hasPermission("classes.sign.denyuse")) {
-
-						plugin.getLogger()
-								.info(eventPlayerName
-										+ "tried to use a Classes sign without the needed permission!");
-
-					}
-					
 					else {
-						
-						eventPlayer.sendMessage(ChatColor.RED + "You do not have permission to use this sign!");
-						
+
+						eventPlayer
+								.sendMessage(ChatColor.RED
+										+ "You do not have permission to use this sign!");
+
+						if (logToConsole == true) {
+
+							plugin.getLogger()
+									.info(eventPlayerName
+											+ "tried to use a Classes sign without the needed permission!");
+
+						}
+
 					}
 
 				}
