@@ -27,11 +27,12 @@ public class PlayerSignWriteEvent implements Listener {
 
 		Player eventPlayer = event.getPlayer();
 
-		String eventPlayerName = eventPlayer.getName();
-
 		List<String> classNames = plugin.getConfig().getStringList("classes");
 
 		String className = event.getLine(1).trim();
+		String eventPlayerName = eventPlayer.getName();
+		
+		boolean logToConsole = plugin.getConfig().getBoolean("log-to-console");
 
 		if (event.getLine(0).equalsIgnoreCase("[classes]")) {
 
@@ -46,16 +47,32 @@ public class PlayerSignWriteEvent implements Listener {
 
 					eventPlayer.sendMessage(ChatColor.BLUE
 							+ "Sign has been created!");
+					
+					if (logToConsole == true) {
+
+						plugin.getLogger()
+								.info(eventPlayerName
+										+ "created a Classes sign for the class " + WordUtils.capitalize(className) + "!");
+
+					}
 
 				}
 
 				else {
 
-					event.setLine(0, ChatColor.GRAY + "[" + ChatColor.RED
+					event.setLine(0, ChatColor.GRAY + "[" + ChatColor.DARK_RED
 							+ "Classes" + ChatColor.GRAY + "]");
 
 					eventPlayer.sendMessage(ChatColor.RED
 							+ "This class does not exist!");
+					
+					if (logToConsole == true) {
+
+						plugin.getLogger()
+								.info(eventPlayerName
+										+ "tried to create a Classes sign for a non-existing class!");
+
+					}
 
 				}
 
