@@ -35,9 +35,21 @@ public class CmdClass implements CommandExecutor {
 				String playerClassCapitalized = WordUtils
 						.capitalize(playerClass);
 
-				senderPlayer.sendMessage(ChatColor.AQUA
-						+ "You are currently in the " + ChatColor.RED
-						+ playerClassCapitalized + ChatColor.AQUA + " class!");
+				if (playerClass == null) {
+
+					senderPlayer.sendMessage(ChatColor.RED
+							+ "You are not in a class!");
+
+				}
+
+				else {
+
+					senderPlayer.sendMessage(ChatColor.AQUA
+							+ "You are currently in the " + ChatColor.RED
+							+ playerClassCapitalized + ChatColor.AQUA
+							+ " class!");
+
+				}
 
 				return true;
 
